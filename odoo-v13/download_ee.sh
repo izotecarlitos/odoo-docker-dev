@@ -1,4 +1,7 @@
 #!/bin/sh
+scriptdir="$(dirname "$0")"
+cd "$scriptdir"
+
 token=$(<../token/token.txt)
 
 rm -r ../../odoo_latest_src/enterprise/v13
