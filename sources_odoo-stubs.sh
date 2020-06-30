@@ -1,6 +1,3 @@
 #!/bin/sh
-rm -r ../odoo-stubs
-curl  https://codeload.github.com/trinhanhngoc/odoo-stubs/zip/12.0 --output odoo-stubs.zip
-unzip -q odoo-stubs.zip
-rm odoo-stubs.zip
-mv odoo-stubs* ../odoo-stubs
+./odoo-v12/download_odoo-stubs.sh
+./odoo-v13/download_odoo-stubs.sh
