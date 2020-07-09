@@ -37,7 +37,6 @@ services:
       #- ../../odoo_latest_src/enterprise/v12/:/home/odoo/enterprise
       - ../../odoo_latest_src/community/v12/odoo:/usr/lib/python3/dist-packages/odoo
       - ../../odoo_themes/free/v12:/home/odoo/free_themes
-      - ../../debug:/home/odoo/debug-egg/
       - ./extra-addons:/mnt/extra-addons
       - ./config:/etc/odoo
 volumes:
