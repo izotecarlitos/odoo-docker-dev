@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  db:
+    container_name: postgres_for_v14
+    image: postgres:latest
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5414:5432/tcp
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+  # Pgadmin4 
+  pgadmin:
+    container_name: pgadmin4_for_v14
+    image: dpage/pgadmin4:latest
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - 8114:80/tcp
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=odoo
+      - PGADMIN_DEFAULT_PASSWORD=odoo
+      - PGADMIN_LISTEN_PORT=80
+  # Odoo Server
+  web:
+    container_name: odoo_v14
+    image: odoo:14.0
+    depends_on:
+      - db
+    ports:
+      - "8014:8069"
+    volumes:
+      - web-data:/var/lib/odoo
+      #- ../../odoo_latest_src/enterprise/v14/:/home/odoo/enterprise
+      - ../../odoo_latest_src/community/v14/odoo:/usr/lib/python3/dist-packages/odoo
+      - ../../odoo_themes/free/v14:/home/odoo/free_themes
+      - ./extra-addons:/mnt/extra-addons
+      - ./config:/etc/odoo
+volumes:
+  db-data:
+    driver: local
+  pgadmin-data:
+    driver: local
+  web-data:
+    driver: local
