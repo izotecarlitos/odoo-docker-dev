@@ -2,6 +2,8 @@
 scriptdir="$(dirname "$0")"
 cd "$scriptdir"
 
+echo "Downloading odoo enterprise v12 \n"
+
 token=$(<../token/token.txt)
 
 rm -r ../../odoo_latest_src/enterprise/v12

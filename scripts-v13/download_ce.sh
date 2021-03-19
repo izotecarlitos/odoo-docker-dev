@@ -2,6 +2,8 @@
 scriptdir="$(dirname "$0")"
 cd "$scriptdir"
 
+echo "Downloading odoo community v13 \n"
+
 rm -r ../../odoo_latest_src/community/v13
 curl  https://nightly.odoo.com/13.0/nightly/tgz/odoo_13.0.latest.zip --output odoo_13.0.latest.zip
 unzip -q odoo_13.0.latest.zip -d latest_src
