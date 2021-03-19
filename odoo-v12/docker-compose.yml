@@ -4,7 +4,7 @@ services:
     container_name: postgres_for_v12
     image: postgres:latest
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - pg-data:/var/lib/postgresql/data
     ports:
       - 5412:5432/tcp
     environment:
