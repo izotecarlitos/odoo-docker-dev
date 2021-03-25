@@ -4,12 +4,12 @@ services:
 
   # Postgres database server
   db:
-    container_name: postgres_for_v14
+    container_name: postgres_for_vODOO_VERSION
     image: postgres:12.5
     volumes:
       - pg-data:/var/lib/postgresql/data
     ports:
-      - 5414:5432/tcp
+      - POSTGRES_PORT:5432/tcp
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
@@ -18,12 +18,12 @@ services:
 
   # Pgadmin4 
   pgadmin:
-    container_name: pgadmin4_for_v14
+    container_name: pgadmin4_for_vODOO_VERSION
     image: dpage/pgadmin4:latest
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     ports:
-      - 8114:80/tcp
+      - PGADMIN_PORT:80/tcp
     environment:
       - PGADMIN_DEFAULT_EMAIL=developer@izote.net
       - PGADMIN_DEFAULT_PASSWORD=odoo
@@ -31,12 +31,12 @@ services:
 
   # Odoo Server
   web:
-    container_name: odoo_v14
-    image: izotecarlitos/odoo-container:14.0
+    container_name: odoo_vODOO_VERSION
+    image: izotecarlitos/odoo-container:ODOO_VERSION.0
     depends_on:
       - db
     ports:
-      - "8014:8069"
+      - "ODOO_PORT:8069"
     volumes:
       # Odoo Configuration directory
       - ./config:/etc/odoo 
@@ -45,11 +45,11 @@ services:
       - ./extra-addons:/mnt/extra-addons
       - ./filestore:/var/lib/odoo
       # Odoo shared sources to be used by the running container
-      #- ../../odoo_latest_src/community/v14/odoo:/mnt/community                      # See note 1 
-      - ../../odoo_latest_src/community/v14/odoo:/usr/lib/python3/dist-packages/odoo  # See note 1
-      - ../../odoo_latest_src/enterprise/v14/:/mnt/enterprise
-      - ../../odoo_latest_src/themes/v14:/mnt/themes
-      - ../../odoo_latest_src/appstore/v14:/mnt/appstore
+      #- ../../odoo_latest_src/community/vODOO_VERSION/odoo:/mnt/community                      # See note 1 
+      - ../../odoo_latest_src/community/vODOO_VERSION/odoo:/usr/lib/python3/dist-packages/odoo  # See note 1
+      - ../../odoo_latest_src/enterprise/vODOO_VERSION/:/mnt/enterprise
+      - ../../odoo_latest_src/themes/vODOO_VERSION:/mnt/themes
+      - ../../odoo_latest_src/appstore/vODOO_VERSION:/mnt/appstore
 
     # Use this command to initialize your database with 
     # the modules of your preference
