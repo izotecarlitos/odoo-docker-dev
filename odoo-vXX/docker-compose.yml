@@ -33,6 +33,7 @@ services:
   web:
     container_name: odoo_vODOO_VERSION
     image: izotecarlitos/odoo-container:ODOO_VERSION.0
+    #image: odoo:ODOO_VERSION.0
     depends_on:
       - db
     ports:
@@ -46,10 +47,10 @@ services:
       - ./filestore:/var/lib/odoo
       # Odoo shared sources to be used by the running container
       #- ../../odoo_latest_src/community/vODOO_VERSION/odoo:/mnt/community                      # See note 1 
-      - ../../odoo_latest_src/community/vODOO_VERSION/odoo:/usr/lib/python3/dist-packages/odoo  # See note 1
-      - ../../odoo_latest_src/enterprise/vODOO_VERSION/:/mnt/enterprise
-      - ../../odoo_latest_src/themes/vODOO_VERSION:/mnt/themes
-      - ../../odoo_latest_src/appstore/vODOO_VERSION:/mnt/appstore
+      - ../../odoo_latest_src/community/ODOO_VERSION.0/odoo:/usr/lib/python3/dist-packages/odoo  # See note 1
+      #- ../../odoo_latest_src/enterprise/ODOO_VERSION.0/:/mnt/enterprise
+      - ../../odoo_latest_src/themes/ODOO_VERSION.0:/mnt/themes
+      - ../../odoo_latest_src/appstore/ODOO_VERSION.0:/mnt/appstore
 
     # Use this command to initialize your database with 
     # the modules of your preference

@@ -5,7 +5,7 @@ echo    # (optional) move to a new line
 
 ODOO_CONF=config/odoo.conf
 ODOO_CONF_TEMP=odoo.conf
-FOLDERS=(backups config extra-addons filestore)
+FOLDERS=(backups config extra-addons filestore themes)
 
 if [ -f "$ODOO_CONF" ]; then
     mv $ODOO_CONF $ODOO_CONF_TEMP

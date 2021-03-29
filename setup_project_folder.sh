@@ -26,7 +26,7 @@ if [ -d $CUSTOMER_PROJECT_HOME ]
         sed -i '' "s|POSTGRES_PORT|$POSTGRES_PORT|g" "$CUSTOMER_PROJECT_HOME"docker-compose.yml
         sed -i '' "s|PGADMIN_PORT|$PGADMIN_PORT|g" "$CUSTOMER_PROJECT_HOME"docker-compose.yml
 
-        FOLDERS=(backups extra-addons filestore)
+        FOLDERS=(backups extra-addons filestore themes)
 
         for folder in ${FOLDERS[@]}; do
             mkdir -p "$CUSTOMER_PROJECT_HOME/$folder"
@@ -35,6 +35,7 @@ if [ -d $CUSTOMER_PROJECT_HOME ]
         DEV_MACHINE_IP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
         echo "Your PyCharm will be setup with this IP: $DEV_MACHINE_IP. You can change it at anytime. \n"
 
+        sed -i '' "s|ODOO_VERSION|$ODOO_VERSION|g" "$CUSTOMER_PROJECT_HOME_IDEA"CUSTOMER_PROJECT_ID.iml
         mv "$CUSTOMER_PROJECT_HOME_IDEA"CUSTOMER_PROJECT_ID.iml "$CUSTOMER_PROJECT_HOME_IDEA""$CUSTOMER_PROJECT_ID".iml
         sed -i '' "s|CUSTOMER_PROJECT_ID|$CUSTOMER_PROJECT_ID|g" "$CUSTOMER_PROJECT_HOME_IDEA"modules.xml
         sed -i '' "s|CUSTOMER_PROJECT_ID|$CUSTOMER_PROJECT_ID|g" "$CUSTOMER_PROJECT_HOME_IDEA"workspace.xml
