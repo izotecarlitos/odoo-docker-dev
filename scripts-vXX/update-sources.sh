@@ -180,10 +180,19 @@ case ${UPDATE_ALL:0:1} in
         echo -e "\nThese are the supported Odoo Versions"
         echo -e "=====================================\n"
         PS3='Please select the one you would like: '
-        options=("14 Community" "14 Enterprise" "13 Community" "13 Enterprise" "12 Community" "12 Enterprise" Quit)
+        options=("14 Community & Enterprise" "14 Community" "14 Enterprise" \
+                 "13 Community & Enterprise" "13 Community" "13 Enterprise" \
+                 "12 Community & Enterprise" "12 Community" "12 Enterprise" \
+                 Quit)
         select opt in "${options[@]}"
         do
             case $opt in
+                "14 Community & Enterprise")
+                    ODOO_VERSION="14.0"
+                    DOWNLOAD_ODOO_COMMUNITY="Y"
+                    DOWNLOAD_ODOO_ENTERPRISE="Y"
+                    break
+                    ;;
                 "14 Community")
                     ODOO_VERSION="14.0"
                     DOWNLOAD_ODOO_COMMUNITY="Y"
@@ -196,6 +205,12 @@ case ${UPDATE_ALL:0:1} in
                     DOWNLOAD_ODOO_ENTERPRISE="Y"
                     break
                     ;;
+                "13 Community & Enterprise")
+                    ODOO_VERSION="13.0"
+                    DOWNLOAD_ODOO_COMMUNITY="Y"
+                    DOWNLOAD_ODOO_ENTERPRISE="Y"
+                    break
+                    ;;
                 "13 Community")
                     ODOO_VERSION="13.0"
                     DOWNLOAD_ODOO_COMMUNITY="Y"
@@ -205,6 +220,12 @@ case ${UPDATE_ALL:0:1} in
                 "13 Enterprise")
                     ODOO_VERSION="13.0"
                     DOWNLOAD_ODOO_COMMUNITY="N"
+                    DOWNLOAD_ODOO_ENTERPRISE="Y"
+                    break
+                    ;;
+                "12 Community & Enterprise")
+                    ODOO_VERSION="12.0"
+                    DOWNLOAD_ODOO_COMMUNITY="Y"
                     DOWNLOAD_ODOO_ENTERPRISE="Y"
                     break
                     ;;
