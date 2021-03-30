@@ -26,7 +26,7 @@ if [ -d $CUSTOMER_PROJECT_HOME ]
         sed -i '' "s|POSTGRES_PORT|$POSTGRES_PORT|g" "$CUSTOMER_PROJECT_HOME"docker-compose.yml
         sed -i '' "s|PGADMIN_PORT|$PGADMIN_PORT|g" "$CUSTOMER_PROJECT_HOME"docker-compose.yml
 
-        FOLDERS=(backups extra-addons filestore themes)
+        FOLDERS=(backups extra-addons filestore)
 
         for folder in ${FOLDERS[@]}; do
             mkdir -p "$CUSTOMER_PROJECT_HOME/$folder"
@@ -37,9 +37,13 @@ if [ -d $CUSTOMER_PROJECT_HOME ]
 
         sed -i '' "s|ODOO_VERSION|$ODOO_VERSION|g" "$CUSTOMER_PROJECT_HOME_IDEA"CUSTOMER_PROJECT_ID.iml
         mv "$CUSTOMER_PROJECT_HOME_IDEA"CUSTOMER_PROJECT_ID.iml "$CUSTOMER_PROJECT_HOME_IDEA""$CUSTOMER_PROJECT_ID".iml
+
         sed -i '' "s|CUSTOMER_PROJECT_ID|$CUSTOMER_PROJECT_ID|g" "$CUSTOMER_PROJECT_HOME_IDEA"modules.xml
+        
         sed -i '' "s|CUSTOMER_PROJECT_ID|$CUSTOMER_PROJECT_ID|g" "$CUSTOMER_PROJECT_HOME_IDEA"workspace.xml
         sed -i '' "s|DEV_MACHINE_IP|$DEV_MACHINE_IP|g" "$CUSTOMER_PROJECT_HOME_IDEA"workspace.xml
+        sed -i '' "s|ODOO_VERSION|$ODOO_VERSION|g" "$CUSTOMER_PROJECT_HOME_IDEA"workspace.xml
+        
         mv $CUSTOMER_PROJECT_HOME_IDEA "$CUSTOMER_PROJECT_HOME".idea/
 
         echo "Success! Project $CUSTOMER_PROJECT_ID has been created at $CUSTOMER_PROJECT_HOME\n"
